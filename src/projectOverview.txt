@@ -1,0 +1,11 @@
+In my project routes
+routes/
+│
+├── AppRoutes.jsx
+├── CustomerRoutes.jsx
+├── OwnerRoutes.jsx
+└── AdminRoutes.jsx
+for customer 
+create customer dasboard ,
+customer routes
+
