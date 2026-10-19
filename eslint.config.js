@@ -18,4 +18,10 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    files: ['sms-reminder-api/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
 ])

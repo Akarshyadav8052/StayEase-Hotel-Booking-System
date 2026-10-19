@@ -1,4 +1,3 @@
-import React from 'react'
 import {Link, replace, useNavigate} from 'react-router-dom' 
 
 export default function CustomerNavbar() {
@@ -25,9 +24,14 @@ export default function CustomerNavbar() {
                 <li className="nav-item">
                   <Link className="nav-link active" aria-current="page" to={"/"}>Home</Link>
                 </li>
-                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to={'/login'}>My Booking</Link>
-                </li>
+                {loggedInUser && <>
+                  <li className="nav-item">
+                    <Link className="nav-link active" aria-current="page" to="/customer/my-bookings">My Booking</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link active" aria-current="page" to="/customer/reminders">SMS Reminders</Link>
+                  </li>
+                </>}
               </ul>
               <div>
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">

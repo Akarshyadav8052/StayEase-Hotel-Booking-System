@@ -49,7 +49,7 @@ export default function MyHotels() {
                                 <button className="btn btn-primary"
                                 onClick={() =>navigateTo
                                 (`/hotel-owner/add-room/${hotel.id}`) }>Add Room</button>
-                                <button className="btn btn-primary ml-4"
+                                <button className="btn btn-primary ms-5 "
                                 onClick={() =>navigateTo(`/hotel-owner/rooms/${hotel.id}`)}
                                 >View Room</button>
                             </div>

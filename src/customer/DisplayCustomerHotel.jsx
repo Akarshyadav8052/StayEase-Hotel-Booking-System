@@ -1,8 +1,11 @@
 import React from 'react'
 import FilterNavbar from './FilterNavbar'
+import { useNavigate } from 'react-router-dom'
+import './DisplayHotel.css'
 
 export default function DisplayCustomerHotel(props) {
   let hotels=props.hotelArrays
+  let navigateTo=useNavigate()
   return (
     <div className='container'>
         <FilterNavbar filteredHotelFunction={props.filteredHotelFunction}/>
@@ -19,7 +22,7 @@ export default function DisplayCustomerHotel(props) {
                         <span className='bg-primary text-light ps-2 pe-2 rounded'>{hotel.location}</span>
                         <span className='bg-warning  ps-2 pe-2 rounded'>{hotel.city}</span>
                       </div>
-                      <button className="btn btn-secondary w-100">View Details</button>
+                      <button className="btn btn-secondary w-100" onClick={()=>{navigateTo(`/customer/hotel-details/${hotel.id}`)}}>View Details</button>
                     </div>
                   </div>
                 </div>

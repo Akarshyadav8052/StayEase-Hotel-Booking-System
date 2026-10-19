@@ -5,6 +5,9 @@ import Login from "../common/Login";
 import adminRoutes from "./AdminRoutes";
 import HotelOwnerRoutes from "./HotelOwnerRoutes";
 import FetchCustomerHotel from "../customer/FetchCustomerHotel";
+import CustomerHotelDetails from "../customer/CustomerHotelDetails";
+import Booking from "../customer/Booking";
+import CustomerReminders from "../customer/CustomerReminders";
 
 const myRoutes = createBrowserRouter(
     [
@@ -24,6 +27,18 @@ const myRoutes = createBrowserRouter(
                 {
                     index:true,
                     element:<FetchCustomerHotel/>
+                },
+                {
+                    path:"/customer/hotel-details/:hotelId",
+                    element:<CustomerHotelDetails/>
+                },
+                {
+                    path:"/customer/my-bookings",
+                    element:<Booking/>
+                },
+                {
+                    path:"/customer/reminders",
+                    element:<CustomerReminders/>
                 }
 
             ]

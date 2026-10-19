@@ -35,7 +35,7 @@ export default function RoomAdd() {
         console.log(responseObject.data);
         if (response.ok) {
             toast.success(responseObject.massage)
-            navigateTo("/hotel-owner")
+            navigateTo("/hotel-owner/my-hotel")
         }
         else {
             toast.error(responseObject.massage)
@@ -49,8 +49,12 @@ export default function RoomAdd() {
       async function fetchAllrooms() {
         let response = await fetch(`http://localhost:8080/api/v1/get/rooms/${hotelId}`)
         let responseObject = await response.json()
-        setrooms(responseObject.data);
+        
+        if(response.ok){
+            setrooms(responseObject.data);
+        }
       }
+
     
       useEffect(() => {
         fetchAllrooms()

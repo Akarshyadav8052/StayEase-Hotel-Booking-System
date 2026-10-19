@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import { replace,useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-
 export default function Register() {
   const { register, handleSubmit, formState } = useForm()
   let navigateTo=useNavigate()

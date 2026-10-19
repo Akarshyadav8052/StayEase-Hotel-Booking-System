@@ -8,7 +8,7 @@ export default function FetchCustomerHotel() {
 
   async function fetchAllHotels()
   {
-    let response=await fetch("http://localhost:8080/api/v1/get/hotels",)
+    let response=await fetch("http://localhost:8080/api/v1/get/hotels")
     let responseObject=await response.json()
     console.log(response);
     setHotel(responseObject.data)
@@ -19,7 +19,7 @@ export default function FetchCustomerHotel() {
       fetchAllHotels()
     },[])
 
-    async function filterHotels(cityName,locationName)
+    async function filterHotels(cityName,locationName,hotelName)
     {
        let BASEURL="http://localhost:8080/api/v1/get/filtered-hotels?"
        let urlParams=new URLSearchParams()
@@ -28,9 +28,13 @@ export default function FetchCustomerHotel() {
         urlParams.append("cityName",cityName)
 
        }
-       if(locationName!=null && locationName!="All")
+      if(locationName!=null && locationName!="All")
       {
         urlParams.append("locationName",locationName)
+      }
+       if(hotelName!=null && hotelName!="All")
+      {
+        urlParams.append("hotelName",hotelName)
       }
 
        console.log(BASEURL+urlParams.toString());

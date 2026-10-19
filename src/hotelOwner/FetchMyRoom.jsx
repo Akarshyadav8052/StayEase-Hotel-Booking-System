@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 export default function FetchMyRoom() {
     let loggedInUser = JSON.parse(localStorage.getItem("user"));
-    let [Rooms, setRooms] = useState(null);
+    let [rooms, setRooms] = useState(null);
     const { hotelId } = useParams()
     let [isRoomDeleted, setIsRoomDeleted] = useState(null)
 
@@ -19,7 +19,7 @@ export default function FetchMyRoom() {
         let responseObject = await response.json();
         if (response.ok) {
             toast.success(responseObject.massage)
-            setIsRoomDeleted(true)
+            setIsRoomDeleted(true)                         
         }
         else {
             toast.error(responseObject.massage)
@@ -27,28 +27,27 @@ export default function FetchMyRoom() {
     }
 
     async function getAllRoomByHotelID(hotelId) {
-        
+        setIsRoomDeleted(false)
         let response = await fetch(`http://localhost:8080/api/v1/get/rooms/${hotelId}`);
         let responseObject = await response.json();
         console.log(responseObject);
 
         if (response.ok) {
-            toast.success(responseObject.massage)
+           
             setRooms(responseObject.data);
-        }
-        else {
-            toast.error(responseObject.massage)
         }
     }
 
     useEffect(() => {
         getAllRoomByHotelID(hotelId)
-    }, [isRoomDeleted])
+    }, [isRoomDeleted,hotelId])
 
     return (
         <div >
+            
             {
-               Rooms? <DisplayMyRoom  roomArray={Rooms} deleteRoomFunction={deleteRoomById}/>:<h3 className='text-center border-bottom p-5'>There are no any Room found, please add some Room!</h3>
+                
+               rooms ?<DisplayMyRoom  roomArray={rooms} deleteRoomFunction={deleteRoomById}/>:<h3 className='text-center border-bottom p-5'>There are no any Room found, please add some Room!</h3>
             }
         </div>
     )

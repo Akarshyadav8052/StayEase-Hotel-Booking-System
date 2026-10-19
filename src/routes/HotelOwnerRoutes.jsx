@@ -35,8 +35,8 @@ const HotelOwnerRoutes =
                         element:<RoomAdd/>
                     },
                     {
-                        path: "/hotel-owner/rooms/:hotelId",
-                        element: <FetchMyRoom/>
+                        path : "/hotel-owner/rooms/:hotelId",
+                        element : <FetchMyRoom/>
             }
                 ]
 
