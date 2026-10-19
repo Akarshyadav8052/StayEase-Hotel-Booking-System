@@ -56,7 +56,7 @@ public class HotelController {
 	}
 	
 	//get all hotel
-	@GetMapping("get/hotels")
+	@GetMapping("/get/hotels")
 	public ResponseEntity<?>getAllHotels(){
 		return hotelService.getAllHotels();
 	}
@@ -68,12 +68,13 @@ public class HotelController {
 	}
 	
 	//get filter hotel
-	@GetMapping("/get/filtered-hotels")
+	@GetMapping("/get/filtered-hotels")     
 	public ResponseEntity<?> getAllFilteredHotel(
 			@RequestParam(name="cityName",required = false) String cityName,
 			@RequestParam(name="locationName",required = false) String locationName,
-			@RequestParam(name = "sortDirection",required = false) String sortDirection)
+			@RequestParam(name = "sortDirection",required = false) String sortDirection,
+			@RequestParam(name="hotelName",required = false) String hotelName)
 	{
-		return hotelService.getAllFilteredHotel(cityName,locationName,sortDirection);
+		return hotelService.getAllFilteredHotel(cityName,locationName,sortDirection,hotelName);
 	}
 }

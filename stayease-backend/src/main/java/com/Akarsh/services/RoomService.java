@@ -82,6 +82,47 @@ public class RoomService {
 		}
 	}
 	
+	//update room by roomId
+	
+	public  ResponseEntity<?>updateRoom(String roomObject,MultipartFile roomImage,long roomId) throws IOException
+	{
+		
+		//find existing room by room id
+		Room exixtingRoom=roomRepository.findById(roomId).get();
+		
+		//convert String room object to real room object
+		ObjectMapper objectMapper=new ObjectMapper();
+		Room updatedRoom=objectMapper.readValue(roomObject, Room.class);
+		
+		//set fk for hotel
+		long hotelId=updatedRoom.getHotel().getId();
+		Optional<Hotel> existingHotel=hotelRepository.findById(hotelId);
+		if (existingHotel.isEmpty()) 
+		{
+			return response.send("Room not found",null,HttpStatus.NOT_FOUND);
+        }
+		
+		updatedRoom.setHotel(existingHotel.get());
+		
+		
+		//check image exists or not
+		if (roomImage == null || roomImage.isEmpty())
+		{
+            return response.send("roomImage is required",null,HttpStatus.NOT_FOUND);
+        }
+		 //set image 
+		String roomImageName=roomImage.getOriginalFilename();
+		updatedRoom.setRoomImage(roomImageName);
+		
+		//writing image into uploads/images folder
+		
+		Path completeImagePath=Paths.get(IMAGE_UPLOAD_DIR,roomImageName);
+		Files.write(completeImagePath,roomImage.getBytes());
+		
+		Room savedHotel=roomRepository.save(updatedRoom);
+		return response.send("following room added..", savedHotel, HttpStatus.OK);
+	}
+	
 	//delete room by room id
 	public ResponseEntity<?>deleteRoomByRoomId(long roomId)
 	{

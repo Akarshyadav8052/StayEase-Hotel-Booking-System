@@ -23,7 +23,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) 
 public class Hotel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

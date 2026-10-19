@@ -1,5 +1,7 @@
 package com.Akarsh.entities;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Entity
@@ -27,4 +30,7 @@ public class Room {
     @JoinColumn(name = "hotel_id")
     @JsonProperty(access = Access.WRITE_ONLY)
     private Hotel hotel;
+    
+    @OneToMany(mappedBy = "room")
+    private List<Booking> booking;
 }

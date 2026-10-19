@@ -157,11 +157,13 @@ public class HotelService
 	
 
 	//hotel filteration method 
-	public ResponseEntity<?> getAllFilteredHotel(String cityName,String locationName,String sortDirection)
+	     
+	public ResponseEntity<?> getAllFilteredHotel(String cityName,String locationName,String sortDirection,String hotelName)
 	{
 		Specification<Hotel> customFilter=Specification.where(HotelSpecification.hasCityName(cityName)
 				.and(HotelSpecification.hasLocationName(locationName))
-				.and(HotelSpecification.shortByPrice(sortDirection)));
+				.and(HotelSpecification.sortByPrice(sortDirection))
+				.and(HotelSpecification.hasHotelName(hotelName)));
 		List<Hotel> filteredHotel=hotelRepository.findAll(customFilter);
 		return response.send("folllowing hetel found.", filteredHotel, HttpStatus.OK);
 	}

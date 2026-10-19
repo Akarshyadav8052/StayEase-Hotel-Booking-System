@@ -34,7 +34,7 @@ public class HotelSpecification {
 	
 	
 	//according to price sort filteration
-	public static Specification<Hotel> shortByPrice(String sortDirection)
+	public static Specification<Hotel> sortByPrice(String sortDirection)
 	 { 
 		 return (root,query,criteriaBuilder) -> 
 		 {
@@ -53,6 +53,28 @@ public class HotelSpecification {
 			 }
 			 return null;
 		 }; 
-	 } 
+	 }  
 
+	
+	//search filteration
+		public static Specification<Hotel> hasHotelName(String hotelName)
+		 { 
+			 return (root,query,criteriaBuilder) ->
+			 {
+				 if(hotelName==null || hotelName.isBlank()) 
+				 {
+					 return null;
+				 }
+				 
+				 return criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%"+hotelName.toLowerCase()+"%") ;
+				
+			 };
+		 }
 }
+
+
+
+
+
+
+

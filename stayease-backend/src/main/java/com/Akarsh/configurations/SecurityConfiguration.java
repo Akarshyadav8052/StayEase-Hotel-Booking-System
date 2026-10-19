@@ -53,12 +53,13 @@ public class SecurityConfiguration {
 		httpSecurity
 			.cors(cors-> cors.configurationSource(corsConfigurationSource()))
 			.csrf(anyRequest -> anyRequest.disable()) // disable CSRF
-			.authorizeHttpRequests(request -> request
+			.authorizeHttpRequests(request -> request 
 			.requestMatchers("/api/v1/register").permitAll()
 			.requestMatchers("/api/v1/login").permitAll()
 			.requestMatchers("/api/v1/get/**").permitAll()
 			.requestMatchers("/api/v1/images/**").permitAll()
-			.requestMatchers("/api/v1/hotelowner/**").permitAll()
+			.requestMatchers("/api/v1/admin/**").hasAuthority("ADMIN")
+			.requestMatchers("/api/v1/hotelowner/**").hasAuthority("HOTELOWNER")
 			.requestMatchers("/api/v1/customer/**").hasAuthority("CUSTOMER")
 			.anyRequest().authenticated())
 			.sessionManagement(session -> session
